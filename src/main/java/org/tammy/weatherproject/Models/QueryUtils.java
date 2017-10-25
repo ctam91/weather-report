@@ -178,10 +178,28 @@ public final class QueryUtils {
         } catch(IOException e){
             System.out.println("Problem making the HTTP request");
         }
-        // Extract relevant field from JSON response and add it to an Earthquake List
+        // Extract relevant field from JSON response and create a Weather object
         Weather weatherData = extractWeatherData(jsonResponse);
         return weatherData;
     }
+
+
+    public static ArrayList<WeatherForecast> fetchWeatherForecast(String requestUrl){
+        // Create URL object
+        URL url = createUrl(requestUrl);
+
+        // Perform HTTP request
+        String jsonResponse = null;
+        try{
+            jsonResponse = makeHttpRequest(url);
+        } catch(IOException e){
+            System.out.println("Problem making the HTTP request");
+        }
+        // Extract relevant field from JSON response and add it to an WeatherForecast List
+        ArrayList<WeatherForecast> forecasts = extractWeatherForecast(jsonResponse);
+        return forecasts;
+    }
+
 
     /**
      * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.

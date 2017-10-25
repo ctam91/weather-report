@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tammy.weatherproject.Models.QueryUtils;
 import org.tammy.weatherproject.Models.Weather;
+import org.tammy.weatherproject.Models.WeatherForecast;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -23,8 +26,11 @@ public class HomeController {
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
         Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
 
+        ArrayList<WeatherForecast> forecasts = QueryUtils.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/CA/San_Francisco.json");
+
         model.addAttribute("imageURL", image);
         model.addAttribute(theWeather);
+        model.addAttribute(forecasts);
         return "jumbotron";
     }
 
