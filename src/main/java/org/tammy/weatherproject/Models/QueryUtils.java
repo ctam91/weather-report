@@ -1,6 +1,5 @@
 package org.tammy.weatherproject.Models;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -111,20 +110,16 @@ public final class QueryUtils {
 
         try {
             JSONObject myObject = new JSONObject(weatherJSON);
-            JSONObject main = new JSONObject(myObject.getString("main"));
-            String temp = main.getString("temp");
-            Double tempC = Double.parseDouble(temp);
-            Long date = myObject.getLong("dt");
-            String location = myObject.getString("name");
+            JSONObject currentObservation = new JSONObject(myObject.getString("current_observation"));
+            JSONObject displayLocation = new JSONObject(currentObservation.getString("display_location"));
 
-            JSONArray weather_description = myObject.getJSONArray("weather");
-            JSONObject my_weather = weather_description.getJSONObject(0);
-
-            String description = my_weather.getString("description");
-            String weatherType = my_weather.getString("main");
+            String temp = currentObservation.getString("temperature_string");
+            String location = displayLocation.getString("full");
+            String observationTime = currentObservation.getString("observation_time");
+            String weatherDescription = currentObservation.getString("weather");
 
 
-            Weather result = new Weather(tempC, location, date, description, weatherType);
+            Weather result = new Weather(temp, location, observationTime, weatherDescription);
             return result;
 
         } catch (JSONException e) {

@@ -43,8 +43,8 @@ public class Weather {
         return weatherDescription;
     }
 
-    public void setDescription(String mDescription) {
-        this.weatherDescription = mDescription;
+    public void setDescription(String description) {
+        this.weatherDescription = description;
     }
 
 
