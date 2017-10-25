@@ -1,8 +1,5 @@
 package org.tammy.weatherproject.Models;
 
-import android.text.TextUtils;
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,10 +83,10 @@ public final class QueryUtils {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else{
-                Log.e("Error", "Error response code" + urlConnection.getResponseCode());
+                System.out.println("Error response code" + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e("Error", "Problem returning the JSON information");
+            System.out.println("Problem returning the JSON information");
         } finally {
             if(urlConnection != null ){
                 urlConnection.disconnect();
@@ -108,7 +105,7 @@ public final class QueryUtils {
     private static Weather extractWeatherData(String weatherJSON){
 
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(weatherJSON)) {
+        if (weatherJSON == null) {
             return null;
         }
 
@@ -149,7 +146,7 @@ public final class QueryUtils {
         try{
             jsonResponse = makeHttpRequest(url);
         } catch(IOException e){
-            Log.e("Error","Problem making the HTTP request", e);
+            System.out.println("Problem making the HTTP request");
         }
         // Extract relevant field from JSON response and add it to an Earthquake List
         Weather weatherData = extractWeatherData(jsonResponse);
