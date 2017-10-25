@@ -16,10 +16,19 @@ public class HomeController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model){
-        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/CA/San_Francisco.json");
-        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/CA/San_Francisco.gif?newmaps=1";
-        model.addAttribute(theWeather);
+        String city = "Seattle";
+        String state = "WA";
+
+        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
+        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
+
         model.addAttribute("imageURL", image);
+        model.addAttribute(theWeather);
         return "jumbotron";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String index(){
+        return null;
     }
 }
