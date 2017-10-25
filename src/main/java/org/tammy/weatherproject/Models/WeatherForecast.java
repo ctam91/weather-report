@@ -3,12 +3,12 @@ package org.tammy.weatherproject.Models;
 public class WeatherForecast {
 
     private String description;
-    private String title;
+    private String day;
     private String iconUrl;
 
-    public WeatherForecast(String description, String title, String iconUrl) {
+    public WeatherForecast(String description, String day, String iconUrl) {
         this.description = description;
-        this.title = title;
+        this.day = day;
         this.iconUrl = iconUrl;
     }
 
@@ -20,12 +20,12 @@ public class WeatherForecast {
         this.description = description;
     }
 
-    public String getTitle() {
-        return title;
+    public String getDay() {
+        return day;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public String getIconUrl() {
