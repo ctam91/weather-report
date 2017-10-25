@@ -2,27 +2,25 @@ package org.tammy.weatherproject.Models;
 
 public class Weather {
 
-    private double temp;
+    private String temperature;
     private String location;
-    private Long timeInMilliseconds;
-    private String description;
-    private String weatherType;
+    private String observationTime;
+    private String weatherDescription;
 
-    public Weather(double temp, String location, Long date, String description, String weatherType) {
-        this.temp = temp;
+    public Weather(String temperature, String location, String observationTime, String description) {
+        this.temperature = temperature;
         this.location = location;
-        this.timeInMilliseconds = date;
-        this.description = description;
-        this.weatherType = weatherType;
+        this.observationTime = observationTime;
+        this.weatherDescription = description;
     }
 
 
-    public double getTemp() {
-        return temp;
+    public String getTemp() {
+        return temperature;
     }
 
-    public void setTemp(double temp) {
-        this.temp = temp;
+    public void setTemp(String temperature) {
+        this.temperature = temperature;
     }
 
     public String getLocation() {
@@ -33,23 +31,21 @@ public class Weather {
         this.location = mLocation;
     }
 
-    public Long getTimeInMilliseconds() {
-        return timeInMilliseconds;
+    public String getObservationTime() {
+        return observationTime;
     }
 
-    public void setTimeInMilliseconds(Long mTimeInMilliseconds) {
-        this.timeInMilliseconds = mTimeInMilliseconds;
+    public void setObservationTime(String observationTime) {
+        this.observationTime = observationTime;
     }
 
     public String getDescription() {
-        return description;
+        return weatherDescription;
     }
 
     public void setDescription(String mDescription) {
-        this.description = mDescription;
+        this.weatherDescription = mDescription;
     }
 
-    public String getWeatherType() {
-        return weatherType;
-    }
+
 }
