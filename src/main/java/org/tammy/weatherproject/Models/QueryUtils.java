@@ -1,5 +1,6 @@
 package org.tammy.weatherproject.Models;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -128,6 +130,39 @@ public final class QueryUtils {
         return null;
     }
 
+    private static ArrayList<WeatherForecast> extractWeatherForecast(String weatherJSON){
+
+        // If the JSON string is empty or null, then return early.
+        if (weatherJSON == null) {
+            return null;
+        }
+
+        ArrayList<WeatherForecast> weatherForecast = new ArrayList<>();
+
+        try {
+            JSONObject weatherData = new JSONObject(weatherJSON);
+            JSONObject forecast = weatherData.getJSONObject("forecast");
+            JSONObject txtForecast = forecast.getJSONObject("txt_forecast");
+            JSONArray forecastArray = txtForecast.getJSONArray("forecastday");
+
+            for(int i = 0; i < forecastArray.length(); i += 2){
+                JSONObject firstWeather = forecastArray.getJSONObject(i);
+
+                String description = firstWeather.getString("fcttext");
+                String day = firstWeather.getString("title");
+                String iconUrl = firstWeather.getString("icon_url");
+                // Add new Weather object to weathers arraylist
+
+                weatherForecast.add(new WeatherForecast(description, day, iconUrl));
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return weatherForecast;
+    }
         /*
         Retrieve Weather Data from API
      */
