@@ -19,6 +19,6 @@ public class HomeController {
         Weather theWeather = QueryUtils.fetchWeatherData("http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b1b15e88fa797225412429c1c50c122a1");
 
         model.addAttribute(theWeather);
-        return "index";
+        return "jumbotron";
     }
 }
