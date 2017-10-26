@@ -17,11 +17,11 @@ public class Weather {
     }
 
 
-    public String getTemp() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public void setTemp(String temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 
