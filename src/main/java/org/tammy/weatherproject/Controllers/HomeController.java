@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class HomeController {
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "home", method = RequestMethod.GET)
     public String index(Model model){
         String city = "Seattle";
         String state = "WA";
@@ -26,21 +26,63 @@ public class HomeController {
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
         Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
 
-        ArrayList<WeatherForecast> forecasts = QueryUtils.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/CA/San_Francisco.json");
-
         model.addAttribute("imageURL", image);
-        model.addAttribute(theWeather);
-        model.addAttribute(forecasts);
-        return "jumbotron";
+        model.addAttribute("theWeather",theWeather);
+        return "home";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "home", method = RequestMethod.POST)
     public String index(Model model, @RequestParam String city){
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ "WA" + "/" + city + ".gif?newmaps=1";
         Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+"WA" +"/"+ city +".json");
 
         model.addAttribute("imageURL", image);
-        model.addAttribute(theWeather);
-        return "jumbotron";
+        model.addAttribute("theWeather",theWeather);
+        return "home";
     }
+
+    @RequestMapping(value = "radar", method = RequestMethod.GET)
+    public String showRadar(Model model){
+        String city = "Seattle";
+        String state = "WA";
+
+        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
+        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+"WA" +"/"+ city +".json");
+
+        model.addAttribute("imageURL", image);
+        model.addAttribute("theWeather",theWeather);
+        return "radar";
+    }
+
+    @RequestMapping(value = "radar", method = RequestMethod.POST)
+    public String showNewRadar(Model model, @RequestParam String city){
+
+        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/WA/" + city + ".gif?newmaps=1";
+        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+"WA" +"/"+ city +".json");
+
+        model.addAttribute("imageURL", image);
+        model.addAttribute("theWeather",theWeather);
+        return "radar";
+    }
+
+    @RequestMapping(value = "forecast", method = RequestMethod.GET)
+    public String showForecast(Model model){
+        String city = "Seattle";
+        String state = "WA";
+
+        ArrayList<WeatherForecast> forecasts = QueryUtils.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/WA/" + city + ".json");
+
+        model.addAttribute("forecasts", forecasts);
+        return "forecast";
+    }
+
+    @RequestMapping(value = "forecast", method = RequestMethod.POST)
+    public String showNewForecast(Model model, @RequestParam String city){
+
+        ArrayList<WeatherForecast> forecasts = QueryUtils.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/WA/" + city + ".json");
+
+        model.addAttribute("forecasts", forecasts);
+        return "forecast";
+    }
+
 }
