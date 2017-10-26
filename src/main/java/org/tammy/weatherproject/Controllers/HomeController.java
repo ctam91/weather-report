@@ -19,16 +19,11 @@ import java.util.ArrayList;
 public class HomeController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(Model model) {
+    public String index(Model model){
         String city = "Seattle";
         String state = "WA";
 
-<<<<<<< HEAD
-        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/" + state + "/" + city + ".gif?newmaps=1";
-        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/" + state + "/" + city + ".json");
-=======
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
->>>>>>> weather_data
 
         Weather theWeather = WeatherData.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
 
@@ -41,11 +36,6 @@ public class HomeController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-<<<<<<< HEAD
-    public String index(Model model, @RequestParam String city) {
-        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/" + "WA" + "/" + city + ".gif?newmaps=1";
-        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/" + "WA" + "/" + city + ".json");
-=======
     public String index(Model model, @RequestParam String city){
         String state = "WA";
 
@@ -54,7 +44,6 @@ public class HomeController {
         Weather theWeather = WeatherData.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
 
         ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/WA/" + city + ".json");
->>>>>>> weather_data
 
         model.addAttribute("forecasts", forecasts);
         model.addAttribute("imageURL", image);
