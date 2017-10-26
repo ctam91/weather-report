@@ -12,10 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by tammy on 10/6/2017.
@@ -99,9 +96,9 @@ public final class WeatherData {
     }
 
     /**
-     * Parse JSON response
+     * Parse JSON response for current weather conditions
      * @param weatherJSON the JSON data
-     * @return list of weather objects from JSON
+     * @return weather object from JSON
      */
     private static Weather extractWeatherData(String weatherJSON){
 
@@ -130,6 +127,11 @@ public final class WeatherData {
         return null;
     }
 
+    /**
+     * Parse JSON to retrieve Weather forecast information
+     * @param weatherJSON JSON reponse from Wunderground API call
+     * @return ArrayList of weather forecasts
+     */
     private static ArrayList<WeatherForecast> extractWeatherForecast(String weatherJSON){
 
         // If the JSON string is empty or null, then return early.
@@ -163,10 +165,12 @@ public final class WeatherData {
 
         return weatherForecast;
     }
-        /*
-        Retrieve Weather Data from API
-     */
 
+    /**
+     * Retrieves Weather data from Wunderground
+     * @param requestUrl API url
+     * @return single weather data to display current weather conditions
+     */
     public static Weather fetchWeatherData(String requestUrl){
         // Create URL object
         URL url = createUrl(requestUrl);
@@ -183,6 +187,11 @@ public final class WeatherData {
         return weatherData;
     }
 
+    /**
+     * Method to retrieve weather forecasts from Wunderground
+     * @param requestUrl API url
+     * @return ArrayList of weather forecasts from API call
+     */
 
     public static ArrayList<WeatherForecast> fetchWeatherForecast(String requestUrl){
         // Create URL object
@@ -200,29 +209,6 @@ public final class WeatherData {
         return forecasts;
     }
 
-
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
-   public static String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
-        return dateFormat.format(dateObject);
-    }
-
-    /**
-     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
-     */
-    public static String formatTime(Date dateObject) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-        return timeFormat.format(dateObject);
-    }
-
-
-    public static String formatTemp(Double tempC){
-        Double fTemp = tempC * (9.0/5) + 32.0;
-        DecimalFormat fTempFormatted = new DecimalFormat("0.0");
-        return fTempFormatted.format(fTemp);
-    }
 
 //    public static int getWeatherIcon(String weatherType){
 //        int iconResourceId;
