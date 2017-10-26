@@ -16,12 +16,12 @@ import org.tammy.weatherproject.Models.Weather;
 public class HomeController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(Model model){
+    public String index(Model model) {
         String city = "Seattle";
         String state = "WA";
 
-        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
-        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
+        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/" + state + "/" + city + ".gif?newmaps=1";
+        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/" + state + "/" + city + ".json");
 
         model.addAttribute("imageURL", image);
         model.addAttribute(theWeather);
@@ -29,9 +29,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String index(Model model, @RequestParam String city){
-        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ "WA" + "/" + city + ".gif?newmaps=1";
-        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+"WA" +"/"+ city +".json");
+    public String index(Model model, @RequestParam String city) {
+        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/" + "WA" + "/" + city + ".gif?newmaps=1";
+        Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/" + "WA" + "/" + city + ".json");
 
         model.addAttribute("imageURL", image);
         model.addAttribute(theWeather);
