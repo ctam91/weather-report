@@ -117,9 +117,9 @@ public final class WeatherData {
             String location = displayLocation.getString("full");
             String observationTime = currentObservation.getString("observation_time");
             String weatherDescription = currentObservation.getString("weather");
+            String iconURL = currentObservation.getString("icon_url");
 
-
-            Weather result = new Weather(temp, location, observationTime, weatherDescription);
+            Weather result = new Weather(temp, location, observationTime, weatherDescription, iconURL);
             return result;
 
         } catch (JSONException e) {
@@ -148,7 +148,7 @@ public final class WeatherData {
             JSONObject txtForecast = forecast.getJSONObject("txt_forecast");
             JSONArray forecastArray = txtForecast.getJSONArray("forecastday");
 
-            for(int i = 0; i < forecastArray.length(); i += 2){
+            for(int i = 2; i < forecastArray.length(); i += 2){
                 JSONObject firstWeather = forecastArray.getJSONObject(i);
 
                 String description = firstWeather.getString("fcttext");
