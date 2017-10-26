@@ -1,5 +1,6 @@
 package org.tammy.weatherproject.Models;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,20 +12,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 
 /**
  * Created by tammy on 10/6/2017.
+ * WeatherData contains all data and helper methods relevant to Weather and WeatherForecast objects
  */
 
-public final class QueryUtils {
+public final class WeatherData {
 
     /*
         Default Constructor
      */
-    public QueryUtils() {
+    public WeatherData() {
     }
 
     /**
@@ -97,9 +97,9 @@ public final class QueryUtils {
     }
 
     /**
-     * Parse JSON response
+     * Parse JSON response for current weather conditions
      * @param weatherJSON the JSON data
-     * @return list of weather objects from JSON
+     * @return weather object from JSON
      */
     private static Weather extractWeatherData(String weatherJSON){
 
@@ -128,10 +128,50 @@ public final class QueryUtils {
         return null;
     }
 
-        /*
-        Retrieve Weather Data from API
+    /**
+     * Parse JSON to retrieve Weather forecast information
+     * @param weatherJSON JSON reponse from Wunderground API call
+     * @return ArrayList of weather forecasts
      */
+    private static ArrayList<WeatherForecast> extractWeatherForecast(String weatherJSON){
 
+        // If the JSON string is empty or null, then return early.
+        if (weatherJSON == null) {
+            return null;
+        }
+
+        ArrayList<WeatherForecast> weatherForecast = new ArrayList<>();
+
+        try {
+            JSONObject weatherData = new JSONObject(weatherJSON);
+            JSONObject forecast = weatherData.getJSONObject("forecast");
+            JSONObject txtForecast = forecast.getJSONObject("txt_forecast");
+            JSONArray forecastArray = txtForecast.getJSONArray("forecastday");
+
+            for(int i = 0; i < forecastArray.length(); i += 2){
+                JSONObject firstWeather = forecastArray.getJSONObject(i);
+
+                String description = firstWeather.getString("fcttext");
+                String day = firstWeather.getString("title");
+                String iconUrl = firstWeather.getString("icon_url");
+                // Add new Weather object to weathers arraylist
+
+                weatherForecast.add(new WeatherForecast(description, day, iconUrl));
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return weatherForecast;
+    }
+
+    /**
+     * Retrieves Weather data from Wunderground
+     * @param requestUrl API url
+     * @return single weather data to display current weather conditions
+     */
     public static Weather fetchWeatherData(String requestUrl){
         // Create URL object
         URL url = createUrl(requestUrl);
@@ -143,33 +183,33 @@ public final class QueryUtils {
         } catch(IOException e){
             System.out.println("Problem making the HTTP request");
         }
-        // Extract relevant field from JSON response and add it to an Earthquake List
+        // Extract relevant field from JSON response and create a Weather object
         Weather weatherData = extractWeatherData(jsonResponse);
         return weatherData;
     }
 
     /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
+     * Method to retrieve weather forecasts from Wunderground
+     * @param requestUrl API url
+     * @return ArrayList of weather forecasts from API call
      */
-   public static String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
-        return dateFormat.format(dateObject);
+
+    public static ArrayList<WeatherForecast> fetchWeatherForecast(String requestUrl){
+        // Create URL object
+        URL url = createUrl(requestUrl);
+
+        // Perform HTTP request
+        String jsonResponse = null;
+        try{
+            jsonResponse = makeHttpRequest(url);
+        } catch(IOException e){
+            System.out.println("Problem making the HTTP request");
+        }
+        // Extract relevant field from JSON response and add it to an WeatherForecast List
+        ArrayList<WeatherForecast> forecasts = extractWeatherForecast(jsonResponse);
+        return forecasts;
     }
 
-    /**
-     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
-     */
-    public static String formatTime(Date dateObject) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-        return timeFormat.format(dateObject);
-    }
-
-
-    public static String formatTemp(Double tempC){
-        Double fTemp = tempC * (9.0/5) + 32.0;
-        DecimalFormat fTempFormatted = new DecimalFormat("0.0");
-        return fTempFormatted.format(fTemp);
-    }
 
 //    public static int getWeatherIcon(String weatherType){
 //        int iconResourceId;

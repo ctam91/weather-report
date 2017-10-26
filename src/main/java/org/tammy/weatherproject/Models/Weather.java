@@ -1,5 +1,7 @@
 package org.tammy.weatherproject.Models;
 
+// This class encapsulates data for current weather conditions
+
 public class Weather {
 
     private String temperature;
@@ -15,11 +17,11 @@ public class Weather {
     }
 
 
-    public String getTemp() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public void setTemp(String temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 

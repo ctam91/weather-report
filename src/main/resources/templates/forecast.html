@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <title>Weather Report</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+</head>
+<body>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container-fluid bg-3 text-center">
+    <h3 class="margin">Three Day Forecast</h3>
+
+
+    <div class="row">
+        <div class="col-sm-3" th:each="forecast : ${forecasts}">
+            <p th:text="${forecast.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

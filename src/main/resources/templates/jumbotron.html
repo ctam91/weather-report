@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Weather Report</title>
+    <day>Weather Report</day>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
 </head>
 <body>
 
-<nav class="navbar navbar-default" >
+<nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -26,47 +26,57 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Current Weather</a></li>
-                <li><a href="#">Map Radar</a></li>
-                <li><a href="#">5 Day Forecast</a></li>
+                <li><a href="#radar">Map Radar</a></li>
+                <li><a href="#forecast">5 Day Forecast</a></li>
             </ul>
             <form method="post" class="nav-bar-form pull-right">
-                <input name="city" type="text" placeholder="city" />
+                <input name="city" type="text" placeholder="city"/>
                 <button type="submit" class="btn btn-success">Get the weather</button>
             </form>
         </div>
     </div>
 </nav>
+
 <!-- First Container -->
-<div class="container-fluid bg-1 text-center">
-    <h3 class="margin" th:text="${weather.location}">City</h3>
-    <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350"/>
-    <h3 th:text="${weather.description}">I'm an adventurer</h3>
-</div>
-
-<!-- Second Container -->
-<div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Radar</h3>
-    <img th:src="@{${imageURL}}" alt="Image"/>
-</div>
-
-<!-- Third Container (Grid) -->
-<div class="container-fluid bg-3 text-center">
-    <h3 class="margin">Five Day Forecast</h3>
-    <div class="row">
-        <div class="col-sm-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
-        </div>
-        <div class="col-sm-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
-        </div>
-        <div class="col-sm-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
+<section id="home">
+    <div class="container-fluid bg-1 text-center">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="margin" th:text="${weather.location}">City</h1>
+                <h1 class="margin" th:text="${weather.temperature}">72 F</h1>
+                <h3 th:text="${weather.description}">Default description</h3>
+                <p th:text="${weather.observationTime}">Last updated...</p>
+            </div>
+            <div class="col-sm-6">
+                <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:50%" alt="Image"/>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Second Container -->
+<section id="radar">
+    <div class="container-fluid bg-2 text-center">
+        <h3 class="margin">Radar</h3>
+        <img th:src="@{${imageURL}}" alt="Image"/>
+    </div>
+</section>
+
+<!-- Third Container (Grid) -->
+<section id="forecast">
+    <div class="container-fluid bg-3 text-center">
+        <h3 class="margin">Three Day Forecast</h3>
+
+        <div class="row">
+            <div class="col-sm-3" th:each="forecast : ${forecasts}">
+                <p th:text="${forecast.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg"
+                     class="img-responsive margin" style="width:100%" alt="Image"/>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">

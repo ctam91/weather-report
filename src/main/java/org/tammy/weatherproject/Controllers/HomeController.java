@@ -6,8 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.tammy.weatherproject.Models.QueryUtils;
+import org.tammy.weatherproject.Models.WeatherData;
 import org.tammy.weatherproject.Models.Weather;
+import org.tammy.weatherproject.Models.WeatherForecast;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -20,21 +23,44 @@ public class HomeController {
         String city = "Seattle";
         String state = "WA";
 
+<<<<<<< HEAD
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/" + state + "/" + city + ".gif?newmaps=1";
         Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/" + state + "/" + city + ".json");
+=======
+        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
+>>>>>>> weather_data
 
+        Weather theWeather = WeatherData.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
+
+        ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/WA/" + city + ".json");
+
+        model.addAttribute("forecasts", forecasts);
         model.addAttribute("imageURL", image);
-        model.addAttribute(theWeather);
+        model.addAttribute("weather",theWeather);
         return "jumbotron";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
+<<<<<<< HEAD
     public String index(Model model, @RequestParam String city) {
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/" + "WA" + "/" + city + ".gif?newmaps=1";
         Weather theWeather = QueryUtils.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/" + "WA" + "/" + city + ".json");
+=======
+    public String index(Model model, @RequestParam String city){
+        String state = "WA";
 
+        String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
+
+        Weather theWeather = WeatherData.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
+
+        ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/WA/" + city + ".json");
+>>>>>>> weather_data
+
+        model.addAttribute("forecasts", forecasts);
         model.addAttribute("imageURL", image);
-        model.addAttribute(theWeather);
+        model.addAttribute("weather",theWeather);
+
         return "jumbotron";
     }
+
 }
