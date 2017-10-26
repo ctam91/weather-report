@@ -21,12 +21,12 @@ import java.util.Date;
  * Created by tammy on 10/6/2017.
  */
 
-public final class QueryUtils {
+public final class WeatherData {
 
     /*
         Default Constructor
      */
-    public QueryUtils() {
+    public WeatherData() {
     }
 
     /**
