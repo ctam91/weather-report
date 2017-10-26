@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by tammy on 10/6/2017.
+ * WeatherData contains all data and helper methods relevant to Weather and WeatherForecast objects
  */
 
 public final class WeatherData {

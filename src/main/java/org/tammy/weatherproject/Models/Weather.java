@@ -1,5 +1,7 @@
 package org.tammy.weatherproject.Models;
 
+// This class encapsulates data for current weather conditions
+
 public class Weather {
 
     private String temperature;
