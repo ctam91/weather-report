@@ -25,9 +25,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Current Weather</a></li>
-                <li><a href="#">Map Radar</a></li>
-                <li><a href="#">5 Day Forecast</a></li>
+                <li><a href="home">Current Weather</a></li>
+                <li><a href="radar">Map Radar</a></li>
+                <li><a href="forecast">5 Day Forecast</a></li>
             </ul>
             <form method="post" class="nav-bar-form pull-right">
                 <input name="city" type="text" placeholder="city" />
@@ -36,22 +36,29 @@
         </div>
     </div>
 </nav>
+
 <!-- First Container -->
+<section id="home">
 <div class="container-fluid bg-1 text-center">
     <h3 class="margin" th:text="${weather.location}">City</h3>
     <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350"/>
     <h3 th:text="${weather.description}">I'm an adventurer</h3>
 </div>
+</section>
 
 <!-- Second Container -->
+    <section id="radar">
 <div class="container-fluid bg-2 text-center">
     <h3 class="margin">Radar</h3>
     <img th:src="@{${imageURL}}" alt="Image"/>
 </div>
+</section>
 
 <!-- Third Container (Grid) -->
+<section id="forecast">
 <div class="container-fluid bg-3 text-center">
     <h3 class="margin">Five Day Forecast</h3>
+
     <div class="row">
         <div class="col-sm-4">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -67,7 +74,7 @@
         </div>
     </div>
 </div>
-
+</section>
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
