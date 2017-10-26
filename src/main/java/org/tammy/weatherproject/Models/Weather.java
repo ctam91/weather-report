@@ -8,12 +8,14 @@ public class Weather {
     private String location;
     private String observationTime;
     private String weatherDescription;
+    private String iconURL;
 
-    public Weather(String temperature, String location, String observationTime, String description) {
+    public Weather(String temperature, String location, String observationTime, String description, String iconURL) {
         this.temperature = temperature;
         this.location = location;
         this.observationTime = observationTime;
         this.weatherDescription = description;
+        this.iconURL = iconURL;
     }
 
 
@@ -49,5 +51,11 @@ public class Weather {
         this.weatherDescription = description;
     }
 
+    public String getIconURL() {
+        return iconURL;
+    }
 
+    public void setIconURL(String iconURL) {
+        this.iconURL = iconURL;
+    }
 }
