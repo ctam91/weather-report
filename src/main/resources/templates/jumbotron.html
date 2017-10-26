@@ -25,9 +25,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="home">Current Weather</a></li>
-                <li><a href="radar">Map Radar</a></li>
-                <li><a href="forecast">5 Day Forecast</a></li>
+                <li><a href="#home">Current Weather</a></li>
+                <li><a href="#radar">Map Radar</a></li>
+                <li><a href="#forecast">5 Day Forecast</a></li>
             </ul>
             <form method="post" class="nav-bar-form pull-right">
                 <input name="city" type="text" placeholder="city" />
@@ -56,24 +56,17 @@
 
 <!-- Third Container (Grid) -->
 <section id="forecast">
-<div class="container-fluid bg-3 text-center">
-    <h3 class="margin">Five Day Forecast</h3>
+    <div class="container-fluid bg-3 text-center">
+        <h3 class="margin">Three Day Forecast</h3>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
-        </div>
-        <div class="col-sm-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
-        </div>
-        <div class="col-sm-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
+
+        <div class="row">
+            <div class="col-sm-3" th:each="forecast : ${forecasts}">
+                <p th:text="${forecast.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:100%" alt="Image"/>
+            </div>
         </div>
     </div>
-</div>
 </section>
 
 <!-- Footer -->
