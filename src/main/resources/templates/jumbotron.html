@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <day>Weather Report</day>
+    <title>Weather Report</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
@@ -29,10 +29,6 @@
                 <li><a href="#radar">Map Radar</a></li>
                 <li><a href="#forecast">5 Day Forecast</a></li>
             </ul>
-            <form method="post" class="nav-bar-form pull-right">
-                <input name="city" type="text" placeholder="city"/>
-                <button type="submit" class="btn btn-success">Get the weather</button>
-            </form>
         </div>
     </div>
 </nav>
@@ -43,12 +39,19 @@
         <div class="row">
             <div class="col-sm-6">
                 <h1 class="margin" th:text="${weather.location}">City</h1>
+                <img th:src="@{${weather.iconURL}}" alt="Image"/>
                 <h1 class="margin" th:text="${weather.temperature}">72 F</h1>
                 <h3 th:text="${weather.description}">Default description</h3>
                 <p th:text="${weather.observationTime}">Last updated...</p>
             </div>
-            <div class="col-sm-6">
-                <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg" class="img-responsive margin" style="width:50%" alt="Image"/>
+            <div class="col-sm-4">
+                <p>Lorem ipsum dolor sit amet, vocent urbanitas mel ex, eu nec adhuc dicam vidisse. Illud consul eu nam. Dicant tempor accumsan has ne, ea ius audire adipisci theophrastus, iudico temporibus ne pro. Oratio maluisset scribentur at vis. Ex partem possit postulant has, ea iusto iuvaret mei, lorem prodesset sed ne.</p>
+                <p>
+                <form method="post" class="nav-bar-form pull-right">
+                    <input name="city" type="text" placeholder="city"/>
+                    <button type="submit" class="btn btn-success">Get the weather</button>
+                </form>
+                </p>
             </div>
         </div>
     </div>
@@ -68,11 +71,11 @@
         <h3 class="margin">Three Day Forecast</h3>
 
         <div class="row">
-            <div class="col-sm-3" th:each="forecast : ${forecasts}">
+            <div class="col-sm-4" th:each="forecast : ${forecasts}">
+                <h4 th:text="${forecast.day}"></h4>
+                <img th:src="@{${forecast.iconUrl}}" alt="Image"/>
                 <p th:text="${forecast.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <img src="http://clipartix.com/wp-content/uploads/2017/06/Sun-clip-art-free-clipart-images-4.jpg"
-                     class="img-responsive margin" style="width:100%" alt="Image"/>
             </div>
         </div>
     </div>
