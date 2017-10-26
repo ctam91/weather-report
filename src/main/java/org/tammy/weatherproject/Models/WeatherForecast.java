@@ -8,6 +8,7 @@ public class WeatherForecast {
     private String day;
     private String iconUrl;
 
+
     public WeatherForecast(String description, String day, String iconUrl) {
         this.description = description;
         this.day = day;
