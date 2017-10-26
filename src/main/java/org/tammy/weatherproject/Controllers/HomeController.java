@@ -32,7 +32,7 @@ public class HomeController {
         model.addAttribute("forecasts", forecasts);
         model.addAttribute("imageURL", image);
         model.addAttribute("weather",theWeather);
-        return "jumbotron";
+        return "index";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -49,7 +49,7 @@ public class HomeController {
         model.addAttribute("imageURL", image);
         model.addAttribute("weather",theWeather);
 
-        return "jumbotron";
+        return "index";
     }
 
 }
