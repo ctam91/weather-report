@@ -27,7 +27,7 @@ public class HomeController {
 
         Weather theWeather = WeatherData.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
 
-        ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/WA/" + city + ".json");
+        ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/"+ state +"/" + city + ".json");
 
         model.addAttribute("forecasts", forecasts);
         model.addAttribute("imageURL", image);
@@ -36,14 +36,15 @@ public class HomeController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String index(Model model, @RequestParam String city){
-        String state = "WA";
+    public String index(Model model, @RequestParam String location){
+        String state = WeatherData.findState(location);
+        String city = WeatherData.findCity(location);
 
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
 
         Weather theWeather = WeatherData.fetchWeatherData("http://api.wunderground.com/api/cb5d7b2fbd91dacc/conditions/q/"+state +"/"+ city +".json");
 
-        ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/WA/" + city + ".json");
+        ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/"+ state +"/" + city + ".json");
 
         model.addAttribute("forecasts", forecasts);
         model.addAttribute("imageURL", image);

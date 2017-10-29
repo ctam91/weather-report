@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/weather.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
 </head>
@@ -45,10 +46,11 @@
                 <p th:text="${weather.observationTime}">Last updated...</p>
             </div>
             <div class="col-sm-4">
-                <p>Lorem ipsum dolor sit amet, vocent urbanitas mel ex, eu nec adhuc dicam vidisse. Illud consul eu nam. Dicant tempor accumsan has ne, ea ius audire adipisci theophrastus, iudico temporibus ne pro. Oratio maluisset scribentur at vis. Ex partem possit postulant has, ea iusto iuvaret mei, lorem prodesset sed ne.</p>
+                <p>Lorem ipsum dolor sit amet, vocent urbanitas mel ex, eu nec adhuc dicam vidisse. Illud consul eu nam. Dicant tempor accumsan has ne, ea ius audire adipisci theophrastus, iudico temporibus ne pro. Oratio maluisset scribentur at vis. Ex partem possit postulant has, ea iusto iuvaret mei, lorem prodesset sed ne. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <p>
-                <form method="post" class="nav-bar-form pull-right">
-                    <input name="city" type="text" placeholder="city"/>
+                <form method="post" class="pull-right" style="color: black">
+                    <input name="location" type="text" placeholder="City, State"/>
                     <button type="submit" class="btn btn-success">Get the weather</button>
                 </form>
                 </p>

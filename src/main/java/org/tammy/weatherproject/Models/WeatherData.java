@@ -210,23 +210,18 @@ public final class WeatherData {
         return forecasts;
     }
 
+    public static String findCity(String search){
+        String [] parts = search.split(",");
+        String city = parts[0];
+        city = city.replace(" ", "_g");
+        return city;
+    }
 
-//    public static int getWeatherIcon(String weatherType){
-//        int iconResourceId;
-//       switch (weatherType){
-//           case "Clear":
-//               iconResourceId = R.drawable.sun;
-//                break;
-//            case "Rain":
-//                iconResourceId = R.drawable.rain;
-//                break;
-//           case "clouds":
-//               iconResourceId = R.drawable.cloudy;
-//                break;
-//            default:
-//                iconResourceId = R.drawable.umbrella;
-//        }
-//        return iconResourceId;
-//    }
+    public static String findState(String search){
+        String [] parts = search.split(",");
+        String state = parts[1];
+        state = state.replace(" ", "");
+        return state;
+    }
 
 }
