@@ -213,7 +213,7 @@ public final class WeatherData {
     public static String findCity(String search){
         String [] parts = search.split(",");
         String city = parts[0];
-        city = city.replace(" ", "_g");
+        city = city.replace(" ", "_");
         return city;
     }
 
