@@ -36,9 +36,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String index(Model model, @RequestParam String location){
-        String state = WeatherData.findState(location);
-        String city = WeatherData.findCity(location);
+    public String index(Model model, @RequestParam String search){
+        String state = WeatherData.findState(search);
+        String city = WeatherData.findCity(search);
 
         String image = "http://api.wunderground.com/api/cb5d7b2fbd91dacc/animatedradar/q/"+ state + "/" + city + ".gif?newmaps=1";
 
