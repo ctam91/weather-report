@@ -30,7 +30,6 @@ public class HomeController {
         ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/"+ state +"/" + city + ".json");
 
         model.addAttribute("forecasts", forecasts);
-        model.addAttribute("imageURL", image);
         model.addAttribute("weather",theWeather);
         return "index";
     }
@@ -47,7 +46,6 @@ public class HomeController {
         ArrayList<WeatherForecast> forecasts = WeatherData.fetchWeatherForecast("http://api.wunderground.com/api/cb5d7b2fbd91dacc/forecast/q/"+ state +"/" + city + ".json");
 
         model.addAttribute("forecasts", forecasts);
-        model.addAttribute("imageURL", image);
         model.addAttribute("weather",theWeather);
 
         return "index";
