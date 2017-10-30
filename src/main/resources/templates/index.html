@@ -41,17 +41,19 @@
 <section id="home">
     <div class="container-fluid bg-1 text-center">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <h1 class="margin" th:text="${weather.location}">City</h1>
                 <img th:src="@{${weather.iconURL}}" alt="Image"/>
                 <h1 class="margin" th:text="${weather.temperature}">72 F</h1>
                 <h3 th:text="${weather.description}">Default description</h3>
                 <p th:text="${weather.observationTime}">Last updated...</p>
             </div>
-            <div class="col-sm-4">
-                <p>Lorem ipsum dolor sit amet, vocent urbanitas mel ex, eu nec adhuc dicam vidisse. Illud consul eu nam. Dicant tempor accumsan has ne, ea ius audire adipisci theophrastus, iudico temporibus ne pro. Oratio maluisset scribentur at vis. Ex partem possit postulant has, ea iusto iuvaret mei, lorem prodesset sed ne. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
+                    <div class="col-sm-2" th:each="forecast : ${forecasts}">
+                        <h4 th:text="${forecast.day}"></h4>
+                        <img th:src="@{${forecast.iconUrl}}" alt="Image"/>
+                        <p th:text="${forecast.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
         </div>
     </div>
 </section>
@@ -61,14 +63,6 @@
     <div class="container-fluid bg-3 text-center">
         <h3 class="margin">Three Day Forecast</h3>
 
-        <div class="row">
-            <div class="col-sm-3" th:each="forecast : ${forecasts}">
-                <h4 th:text="${forecast.day}"></h4>
-                <img th:src="@{${forecast.iconUrl}}" alt="Image"/>
-                <p th:text="${forecast.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-        </div>
     </div>
 </section>
 
