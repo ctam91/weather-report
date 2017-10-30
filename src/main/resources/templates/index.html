@@ -73,7 +73,7 @@
         <h3 class="margin">Three Day Forecast</h3>
 
         <div class="row">
-            <div class="col-sm-4" th:each="forecast : ${forecasts}">
+            <div class="col-sm-3" th:each="forecast : ${forecasts}">
                 <h4 th:text="${forecast.day}"></h4>
                 <img th:src="@{${forecast.iconUrl}}" alt="Image"/>
                 <p th:text="${forecast.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
