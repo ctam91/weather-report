@@ -193,7 +193,6 @@ public final class WeatherData {
      * @param requestUrl API url
      * @return ArrayList of weather forecasts from API call
      */
-
     public static ArrayList<WeatherForecast> fetchWeatherForecast(String requestUrl){
         // Create URL object
         URL url = createUrl(requestUrl);
@@ -209,7 +208,11 @@ public final class WeatherData {
         ArrayList<WeatherForecast> forecasts = extractWeatherForecast(jsonResponse);
         return forecasts;
     }
-
+    /**
+     * Find the city name from user's input
+     * @param search the user's input
+     * @return the city name
+     */
     public static String findCity(String search){
         String [] parts = search.split(",");
         String city = parts[0];
@@ -217,11 +220,15 @@ public final class WeatherData {
         return city;
     }
 
-    public static String findState(String search){
-        String [] parts = search.split(",");
+    /**
+     * Find the state from a user's input
+     * @param search the user's input
+     * @return the state's name
+     */
+    public static String findState(String search) {
+        String[] parts = search.split(",");
         String state = parts[1];
         state = state.replace(" ", "");
         return state;
     }
-
 }
