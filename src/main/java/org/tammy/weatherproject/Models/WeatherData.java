@@ -19,6 +19,10 @@ import java.util.ArrayList;
  * WeatherData contains all data and helper methods relevant to Weather and WeatherForecast objects
  */
 
+//TODO add more images to style suggestion
+
+//TODO make 3 day weather into 5 day weather
+
 public final class WeatherData {
 
     /*

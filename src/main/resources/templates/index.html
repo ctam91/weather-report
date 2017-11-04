@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Current Weather</a></li>
                 <li><a href="#radar">Map Radar</a></li>
-                <li><a href="#forecast">5 Day Forecast</a></li>
+                <li><a href="#forecast">3 Day Forecast</a></li>
             </ul>
         </div>
     </div>
@@ -46,11 +46,11 @@
                 <p th:text="${weather.observationTime}">Last updated...</p>
             </div>
             <div class="col-sm-4">
-                <p>Lorem ipsum dolor sit amet, vocent urbanitas mel ex, eu nec adhuc dicam vidisse. Illud consul eu nam. Dicant tempor accumsan has ne, ea ius audire adipisci theophrastus, iudico temporibus ne pro. Oratio maluisset scribentur at vis. Ex partem possit postulant has, ea iusto iuvaret mei, lorem prodesset sed ne. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>It's going to rain today. You should bring an umbrella and some rainboots</p>
+                <img src="img/umbrella.png" alt="umbrella"/>
                 <p>
                 <form method="post" class="pull-right" style="color: black">
-                    <input name="search" type="text" placeholder="ex San Francisco, CA"/>
+                    <input name="search" type="text" placeholder="ex: San Francisco, CA"/>
                     <button type="submit" class="btn btn-success">Get the weather</button>
                 </form>
                 </p>
